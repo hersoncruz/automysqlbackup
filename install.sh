@@ -37,6 +37,11 @@ upgrade_config_file () {
     echo ""
     echo "# Basic Settings"
     echo ""
+    echo "# By default script uses defaults-extra-file=/etc/mysql/debian.cnf"
+    echo "# and ignores below user and password."
+    echo "# You can change this file or not using it at all by changing parameter:"
+    echo "# CONFIG_mysql_dump_use_mycnf_for_userpass"
+    echo ""
     echo "# Username to access the MySQL server e.g. dbuser"
     if isSet USERNAME; then
       printf '%s=%q\n' CONFIG_mysql_dump_username "${USERNAME-}"
@@ -417,8 +422,8 @@ prompt_cron () {
 echo "### Checking archive files for existence, readability and integrity."
 echo
 
-precheck_files=( automysqlbackup 58f71e0698c083a60c76ab3e38ad30b7
-automysqlbackup.conf 203d4903cdc9a800c6daca080c43e8a1
+precheck_files=( automysqlbackup 7e61af4d42d5a9ead416c143ce3334f1
+automysqlbackup.conf 450011ae1458e4ff5c885409a189ee85
 cron 84dd4d858d3f3de017be1ba78169c337
 README b17740fcd3a5f8579b907a42249a83cd
 LICENSE 39bba7d2cf0ba1036f2a6e2be52fe3f0
