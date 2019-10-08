@@ -84,6 +84,9 @@ load_default_config() {
   CONFIG_mysql_dump_full_schema='yes'
   CONFIG_mysql_dump_dbstatus='yes'
   CONFIG_mysql_dump_differential='no'
+  CONFIG_mysql_dump_enable_compressed_columns='no'
+  CONFIG_mysql_dump_enable_compressed_columns_with_dictionaries='no'
+  CONFIG_mysql_dump_skip_add_drop_compression_dictionary='no'
   CONFIG_backup_local_files=()
   CONFIG_db_names=()
   CONFIG_db_month_names=()
@@ -500,6 +503,25 @@ parse_configuration () {
 	    opt=( "${opt[@]}" '--databases' )
     fi
       
+    # Check if COLUMN_FORMAT COMPRESSED WITH COMPRESSION_DICTIONARY should be included in Dump
+    if [[ "${CONFIG_mysql_dump_enable_compressed_columns_with_dictionaries}" = "yes" ]]; then
+	    if [[ "${CONFIG_mysql_dump_skip_add_drop_compression_dictionary}" = "yes" ]]; then
+		    opt=( "${opt[@]}" '--enable_compressed_columns_with_dictionaries --skip_add_drop_compression_dictionary' )
+		    opt_fullschema=( "${opt[@]}" '--enable_compressed_columns_with_dictionaries --skip_add_drop_compression_dictionary' )
+	    else
+		    opt=( "${opt[@]}" '--enable_compressed_columns_with_dictionaries' )
+		    opt_fullschema=( "${opt[@]}" '--enable_compressed_columns_with_dictionaries' )
+	    fi
+    else
+	    opt=( "${opt[@]}" '--databases' )
+    fi
+
+    # Check if COLUMN_FORMAT COMPRESSED should be included in Dump
+    if [[ "${CONFIG_mysql_dump_enable_compressed_columns}" = "yes" ]] && [[ "${CONFIG_mysql_dump_enable_compressed_columns_with_dictionaries}" = "no" ]]; then
+		opt=( "${opt[@]}" '--enable_compressed_columns' )
+		opt_fullschema=( "${opt[@]}" '--enable_compressed_columns' )
+    fi
+    
 	# if differential backup is active and the specified rotation is smaller than 21 days, set it to 21 days to ensure, that
 	# master backups aren't deleted.
 	if [[ "x$CONFIG_mysql_dump_differential" = "xyes" ]] && (( ${CONFIG_rotation_daily} < 21 )); then
