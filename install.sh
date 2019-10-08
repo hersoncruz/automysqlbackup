@@ -425,7 +425,7 @@ echo
 precheck_files=( automysqlbackup a18d5b1c8a4b80566d626f5d4422a7f2
 automysqlbackup.conf b42e009cde70be580db7a897ecab4790
 cron 84dd4d858d3f3de017be1ba78169c337
-README b17740fcd3a5f8579b907a42249a83cd
+README.MD 78e9c668e4d9b078295f6b8aa07ad748
 LICENSE 39bba7d2cf0ba1036f2a6e2be52fe3f0
 )
 
@@ -491,7 +491,7 @@ echo
 #copying files
 echo "### Copying files."
 echo
-cp -i automysqlbackup.conf LICENSE README "${configdir}"/
+cp -i automysqlbackup.conf LICENSE README.MD "${configdir}"/
 #cp -i automysqlbackup.conf "${configdir}"/myserver.conf
 cp -i automysqlbackup "${bindir}"/
 if [ ! -z "${cronsch}" ]; then
