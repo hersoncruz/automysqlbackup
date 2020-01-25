@@ -30,15 +30,15 @@ this already.
 
 To install the Automysqlbackup the easy way.
 1. Run the install.sh script.
-2. Edit the /etc/automysqlbackup/myserver.conf file to customise your settings.
+2. Edit the /etc/automysqlbackup/automysqlbackup.conf file to customise your settings.
 3. See usage section.
 
 To install it manually (the hard way).
 1. Create the /etc/automysqlbackup directory.
 2. Copy in the automysqlbackup.conf file.
 3. Copy the automysqlbackup file to /usr/local/bin and make executable.
-4. cp /etc/automysqlbackup/automysqlbackup.conf /etc/automysqlbackup/myserver.conf
-5. Edit the /etc/automysqlbackup/myserver.conf file to customise your settings.
+4. cp /etc/automysqlbackup/automysqlbackup.conf /etc/automysqlbackup/automysqlbackup.conf
+5. Edit the /etc/automysqlbackup/automysqlbackup.conf file to customise your settings.
 6. See usage section.
 
 
