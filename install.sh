@@ -422,8 +422,8 @@ prompt_cron () {
 echo "### Checking archive files for existence, readability and integrity."
 echo
 
-precheck_files=( automysqlbackup a18d5b1c8a4b80566d626f5d4422a7f2
-automysqlbackup.conf b42e009cde70be580db7a897ecab4790
+precheck_files=( automysqlbackup 22765b8b29f01cb38b40ceed334f11ae
+automysqlbackup.conf deb5d8b400d7767820e5d493c4fc4d50
 cron 84dd4d858d3f3de017be1ba78169c337
 README.MD 78e9c668e4d9b078295f6b8aa07ad748
 LICENSE 39bba7d2cf0ba1036f2a6e2be52fe3f0
